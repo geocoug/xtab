@@ -116,6 +116,22 @@ fn xtab(infile: PathBuf, outfile: String, row_headers: Vec<&str>, col_headers: V
     // Print the DataFrame
     println!("{:?}", df);
 
+    // Print the column names from the dataframe
+    let col_names = df.get_column_names();
+
+    // Check if the row headers are in the DataFrame. If they are not, print a generic error message and exit the program
+    for i in 0..row_headers.len() {
+        println!("{:?}", row_headers[i]);
+        // if !df.columns().iter().any(|x| x.name() == row_headers[i]) {
+        //     println!("Error: The row header column {} is not in the input file", row_headers[i]);
+        //     reportable_errors = true;
+        // }
+    }
+
+    for i in 0..col_headers.len() {
+        println!("{:?}", col_headers[i]);
+    }
+
     // Write the header row to the output file
     let mut header_row: Vec<String> = Vec::new();
     if format == 1 {
